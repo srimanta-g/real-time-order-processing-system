@@ -1,12 +1,15 @@
 package com.srimantatech.orderservice.controller;
 
 import com.srimantatech.orderservice.dto.APIResponse;
+import com.srimantatech.orderservice.dto.ConfigDetails;
 import com.srimantatech.orderservice.dto.OrderDto;
 import com.srimantatech.orderservice.entity.Order;
 import com.srimantatech.orderservice.mapper.OrderMapper;
 import com.srimantatech.orderservice.service.OrderService;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +20,7 @@ import org.springframework.web.bind.annotation.*;
 public class OrderController {
 
     private final OrderService orderService;
+    private final ConfigDetails configDetails;
 
     @Operation(summary = "Create a new order",
             description = "This endpoint allows you to create a new order by providing the necessary order details.",
@@ -50,5 +54,11 @@ public class OrderController {
         Order order = this.orderService.getOrderDetailsById(orderId);
         return ResponseEntity.status(HttpStatusCode.valueOf(200))
                 .body(new APIResponse<>(200, order, "Order details fetched successfully"));
+    }
+
+    @GetMapping("/get-config-details")
+    public ResponseEntity<APIResponse<?>> getConfigDetails () {
+        return ResponseEntity.status(HttpStatusCode.valueOf(200))
+                .body(new APIResponse<>(200, configDetails, "Config details fetched successfully"));
     }
 }

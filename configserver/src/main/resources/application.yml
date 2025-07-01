@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: configserver
+  cloud:
+    config:
+      server:
+        git:
+          uri: 'https://github.com/srimanta-g/real-time-order-processing-config'
+
+server:
+  port: 8888
