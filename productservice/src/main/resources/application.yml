@@ -1,3 +1,30 @@
 spring:
   application:
     name: productservice
+  cloud:
+    function:
+      definition: productAvailability
+    stream:
+      bindings:
+        productAvailability-in-0:
+          destination: product-availability-queue
+          group: ${spring.application.name}
+        productAvailability-out-0:
+          destination: product-confirmation-queue
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true
+
+rabbitmq:
+  host: localhost
+  port: 5672
+  username: guest
+  password: guest
+
+
+server:
+  port: 9000
