@@ -1,4 +1,4 @@
-package com.srimantatech.orderservice.dto;
+package com.srimantatech.productservice.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,8 +9,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-public class OrderDto {
-    private long userId;
-    private int productQuantity;
-    private int productId;
+public class ProductConfirmationDto {
+    private long orderId;
+    private boolean isAvailable;
 }

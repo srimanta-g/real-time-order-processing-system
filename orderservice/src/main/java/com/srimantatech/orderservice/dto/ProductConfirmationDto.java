@@ -5,12 +5,11 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
-public class OrderDto {
-    private long userId;
-    private int productQuantity;
-    private int productId;
+public class ProductConfirmationDto {
+    private long orderId;
+    private boolean isAvailable;
 }

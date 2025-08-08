@@ -8,8 +8,6 @@ import com.srimantatech.orderservice.mapper.OrderMapper;
 import com.srimantatech.orderservice.service.OrderService;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

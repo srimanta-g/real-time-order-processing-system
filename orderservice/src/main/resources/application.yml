@@ -5,6 +5,16 @@ spring:
     name: orderservice
   profiles:
     active: dev
+  cloud:
+    function:
+      definition: productAvailability
+    stream:
+      bindings:
+        productAvailability-in-0:
+          destination: product-confirmation-queue
+          group: ${spring.application.name}
+        checkProductAvailability-out-0:
+          destination: product-availability-queue
 
 server:
   port: 8080
