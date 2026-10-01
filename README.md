@@ -1,18 +1,18 @@
 # Real-Time Order Processing
 
-An event-driven microservices system that handles the full order lifecycle (order creation and fulfillment) asynchronously using Kafka.
+An event-driven microservices system that handles the full order lifecycle (order creation and fulfillment) asynchronously using RabbitMQ.
 
 ## Overview
 
 Instead of services calling each other directly, each step in an order's life is published as an event. Services react to those events independently, so a slow or failing service doesn't block the rest of the system.
 
 ```
-Client -> Order Service -> [Kafka] -> Product Service -> [Kafka] -> Order Service
+Client -> Order Service -> [RabbitMQ] -> Product Service -> [RabbitMQ] -> Order Service
 ```
 
 ## Features
 
-- Asynchronous order and fulfillment pipelines over Kafka
+- Asynchronous order and fulfillment pipelines over RabbitMQ
 - Idempotent consumers, so duplicate events don't cause duplicate processing
 - Retry mechanism with dead-letter queues (DLQ) for events that keep failing
 - Topic partitioning and consumer groups for high-throughput processing
@@ -22,7 +22,7 @@ Client -> Order Service -> [Kafka] -> Product Service -> [Kafka] -> Order Servic
 ## Tech Stack
 
 - Java, Spring Boot, Spring Cloud
-- Apache Kafka
+- RabbitMQ
 - Eureka (service discovery), Spring Cloud Config
 - <Database, e.g. MySQL>
 - <Build tool, e.g. Maven>
@@ -30,7 +30,7 @@ Client -> Order Service -> [Kafka] -> Product Service -> [Kafka] -> Order Servic
 
 ## Services
 
-| Service | Responsibility | Port |
+| Service | Responsibility |
 |---|---|---|
 | config-server | Serves centralized configuration |
 | discovery-server | Eureka service registry |
